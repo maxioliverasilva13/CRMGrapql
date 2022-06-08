@@ -32,7 +32,7 @@ const typeDefs = gql`
   type Mutation {
       newUser(input: UserInput): Usuario
       authUser(input: AuthInput): Token
-  }
+  } 
 `
 
 module.exports = typeDefs;
