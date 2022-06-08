@@ -1,0 +1,30 @@
+{
+  "name": "crmgraphql",
+  "version": "1.0.0",
+  "description": "crm in graphql",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/maxioliverasilva13/CRMGrapql.git"
+  },
+  "author": "Maxi Olivera",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maxioliverasilva13/CRMGrapql/issues"
+  },
+  "homepage": "https://github.com/maxioliverasilva13/CRMGrapql#readme",
+  "dependencies": {
+    "apollo-server": "^3.8.2",
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.0.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.3.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
