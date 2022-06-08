@@ -4,6 +4,8 @@ const bcryptjs = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 require("dotenv").config({ path: '.env' });
 
+const secretToken = process.env.JWT_SECRET;
+
 const generateToken = (user, secret, expiresIn) => {
     console.log(user);
     const { id, email, nombre, apellido } = user;
@@ -12,7 +14,10 @@ const generateToken = (user, secret, expiresIn) => {
 
 const resolvers = {
   Query: {
-    obteneCurso: () => "asd"
+    obtenerUsuario: async (_ , { token }) => {
+        const userId = await jwt.verify(token, secretToken);
+        return userId;
+    }
   },
   Mutation: {
     newUser: async (_, { input }) => {
@@ -55,7 +60,7 @@ const resolvers = {
         }
 
         return {
-            token: generateToken(userExist, process.env.JWT_SECRET, "24H")
+            token: generateToken(userExist, secretToken, "24H")
         };
     }
   }

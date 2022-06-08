@@ -9,10 +9,6 @@ const typeDefs = gql`
     created_at: String 
   }
 
-  type Query {
-      obteneCurso: String
-  }
-
   type Token {
       token: String
   }
@@ -27,6 +23,10 @@ const typeDefs = gql`
   input AuthInput {
       email: String!
       password: String!
+  }
+
+  type Query {
+      obtenerUsuario(token: String!) : Usuario
   }
 
   type Mutation {
