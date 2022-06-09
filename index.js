@@ -2,6 +2,7 @@ const { ApolloServer } = require("apollo-server");
 const typeDefs = require("./db/schema");
 const resolvers = require("./db/resolvers");
 const connectDb = require("./config/db");
+const { validateJwt } = require("./utils/jwt");
 
 //schema
 
@@ -12,11 +13,20 @@ connectDb();
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: () => {
-        const miContext = "Example";
-        return {
-            miContext
-        }
+    context: async ({ req }) => {
+       const token = req.headers["authorization"] || "";
+
+       if (token) {
+         try {
+           const userInfo = await validateJwt(token);
+           return {
+              usuario: userInfo
+           }
+         } catch (error) {
+           console.log("ERROR");
+           console.log(error);
+         }
+       }
     }
 });
 
